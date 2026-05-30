@@ -7,10 +7,11 @@ import citasRoutes     from './src/routes/citas.js';
 import serviciosRoutes from './src/routes/servicios.js';
 import pagosRoutes     from './src/routes/pagos.js';
 import busquedaRoutes  from './src/routes/busqueda.js';
-
+import cors from 'cors';
 await conectar();
 
 const app  = express();
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 app.use('/api/pagos/stripe/webhook', express.raw({ type: 'application/json' }));

@@ -19,22 +19,7 @@ cp .env.example .env   # completar las variables
 npm run dev            # o npm start en producción
 ```
 
----
 
-## Variables de entorno (`.env`)
-
-| Variable               | Descripción                         |
-|------------------------|-------------------------------------|
-| `PORT`                 | Puerto del servidor (default: 3000) |
-| `JWT_SECRET`           | Secreto para firmar tokens JWT      |
-| `JWT_EXPIRES_IN`       | Duración del token (ej: `7d`)       |
-| `STRIPE_SECRET_KEY`    | Clave secreta de Stripe             |
-| `STRIPE_WEBHOOK_SECRET`| Secret del webhook de Stripe        |
-| `MP_ACCESS_TOKEN`      | Access token de MercadoPago         |
-| `FRONTEND_URL`         | URL del frontend (para redirects)   |
-| `API_URL`              | URL pública de esta API             |
-
----
 
 ## Endpoints
 
@@ -83,36 +68,8 @@ npm run dev            # o npm start en producción
   "fecha": "2025-06-10T10:00:00",
   "notas": "Quiero degradado"
 }
-```
 
-**Estados**: `pendiente` → `confirmada` | `cancelada` | `completada`
 
----
-
-### 💳 Pagos  `/api/pagos`
-
-#### Stripe
-
-| Método | Ruta                          | Auth | Descripción                          |
-|--------|-------------------------------|------|--------------------------------------|
-| POST   | `/stripe/crear-sesion`        | ✅   | Crea sesión de Checkout → URL de pago|
-| GET    | `/stripe/sesion/:session_id`  | ✅   | Verifica estado de una sesión        |
-| POST   | `/stripe/webhook`             | ❌   | Webhook de Stripe (firma verificada) |
-
-#### MercadoPago
-
-| Método | Ruta                      | Auth | Descripción                          |
-|--------|---------------------------|------|--------------------------------------|
-| POST   | `/mp/crear-preferencia`   | ✅   | Crea preferencia → init_point        |
-| POST   | `/mp/webhook`             | ❌   | Webhook de MercadoPago               |
-
-#### General
-
-| Método | Ruta              | Auth | Descripción                    |
-|--------|-------------------|------|--------------------------------|
-| GET    | `/cita/:cita_id`  | ✅   | Ver todos los pagos de una cita|
-
----
 
 ## Flujo de pago típico
 
@@ -123,20 +80,6 @@ npm run dev            # o npm start en producción
    - MP:     POST /api/pagos/mp/crear-preferencia → redirigir a init_point
 3. El proveedor llama al webhook → la cita pasa a "confirmada"
 4. El cliente verifica:          GET /api/pagos/cita/:id
-```
-
----
-
-## Usuarios de prueba (seed automático)
-
-Al iniciar, la BD crea 5 servicios por defecto. Para crear un admin:
-
-```bash
-# Registrar un usuario normal y actualizar su rol directo en la BD
-sqlite3 db/barberia.db "UPDATE usuarios SET rol='admin' WHERE email='tu@email.com';"
-```
-
----
 
 ## Webhooks en desarrollo
 

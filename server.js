@@ -11,7 +11,6 @@ import cors from 'cors';
 await conectar();
 
 const app  = express();
-app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 app.use('/api/pagos/stripe/webhook', express.raw({ type: 'application/json' }));

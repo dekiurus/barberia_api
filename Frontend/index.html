@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbería Premium | Reserva de Citas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">BarberShop</div>
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#reservar">Reservar Cita</a></li>
+                <li><a href="login.html">Iniciar Sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Estilo y Clase para tu <span>Cabello & Barba</span></h1>
+            <p style="color: var(--texto-mutado); margin-bottom: 30px;">Reserva tu espacio con los mejores profesionales en segundos.</p>
+            <a href="#reservar" class="btn" style="max-width: 250px; text-decoration: none; text-align: center;">Agendar Ahora</a>
+        </div>
+    </header>
+
+    <section id="servicios" class="seccion">
+        <div class="container">
+            <h2 class="seccion-titulo">Nuestros Servicios</h2>
+            <div class="grid-servicios" id="contenedor-servicios">
+                <div class="tarjeta-servicio" onclick="seleccionarServicio(1, 'Corte de Cabello', 25000)">
+                    <h3>Corte de Cabello</h3>
+                    <p style="color: var(--texto-mutado);">Perfilado, lavado y estilo personalizado.</p>
+                    <div class="precio">$25.000</div>
+                </div>
+                <div class="tarjeta-servicio" onclick="seleccionarServicio(2, 'Barba Completa', 18000)">
+                    <h3>Arreglo de Barba</h3>
+                    <p style="color: var(--texto-mutado);">Toalla caliente, navaja y aceites hidratantes.</p>
+                    <div class="precio">$18.000</div>
+                </div>
+                <div class="tarjeta-servicio" onclick="seleccionarServicio(3, 'Combo Premium', 38000)">
+                    <h3>Combo Premium</h3>
+                    <p style="color: var(--texto-mutado);">Corte + Barba + Mascarilla facial.</p>
+                    <div class="precio">$38.000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservar" class="seccion" style="background-color: var(--bg-secundario);">
+        <div class="container">
+            <h2 class="seccion-titulo">Agenda tu Cita</h2>
+            
+            <form class="form-reserva" id="formCita">
+                <input type="hidden" id="servicio_id" required>
+
+                <div class="form-grupo">
+                    <label for="servicio_nombre">Servicio Seleccionado</label>
+                    <input type="text" id="servicio_nombre" class="form-control" placeholder="Selecciona un servicio arriba" readonly>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="barbero">Selecciona tu Barbero</label>
+                    <select id="barbero" class="form-control" required>
+                        <option value="">Cargando barberos disponibles...</option>
+                    </select>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" class="form-control" required>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="hora">Hora Disponible</label>
+                    <input type="time" id="hora" class="form-control" required>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="cliente_nombre">Tu Nombre</label>
+                    <input type="text" id="cliente_nombre" class="form-control" placeholder="Ej. Juan Pérez" required>
+                </div>
+
+                <button type="submit" class="btn">Confirmar Mi Cita</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
